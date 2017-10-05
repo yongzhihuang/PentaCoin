@@ -1,0 +1,14 @@
+{
+  "name": "pentacoin",
+  "version": "1.0.0",
+  "description": "A blockchain example in Javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "js-sha256": "0.6.0"
+  }
+}
