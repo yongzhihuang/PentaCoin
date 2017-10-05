@@ -1,7 +1,7 @@
 const sha256 = require('js-sha256');
 const _ = require('lodash');
 
-export class BlockChain {
+class BlockChain {
   constructor() {
     this.chain = [];
     this.currentTransactions = [];
@@ -46,4 +46,22 @@ export class BlockChain {
   getLastBlock() {
     return this.chain[this.chain.length-1];
   }
+
+  validateProofOfWork(lastProof) {
+    let proof = 0;
+    while (this.validProof(lastProof, proof) === false) {
+      proof +=1;
+    }
+
+    return proof;
+  }
+
+
+  static validateProof(lastProof, proof) {
+    const guess = `${JSON.stringify(_.sortBy(lastProof))}${JSON.stringify(_.sortBy(proof))}`;
+    const guessHash = sha256(guess);
+    return guessHash[4] === '0000';
+  }
 }
+
+exports.BlockChain = BlockChain
